@@ -1,0 +1,30 @@
+criterios=function(parameters,y,x,tau,modelo){
+  if(modelo=='UPHN'){
+    menosloglike=loglike_UPHN(parameters,y,x,tau)
+    p=length(parameters)
+    n=length(y)
+    Neg2LogLike=2*menosloglike
+    AIC=2*menosloglike+2*p
+    BIC=2*menosloglike+p*log(n)
+    HQIC=2*menosloglike+2*p*log(log(n))
+  }
+  if(modelo=='UGHN'){
+    menosloglike=loglike_UGHN(parameters,y,x,tau)
+    p=length(parameters)
+    n=length(y)
+    Neg2LogLike=2*menosloglike
+    AIC=2*menosloglike+2*p
+    BIC=2*menosloglike+p*log(n)
+    HQIC=2*menosloglike+2*p*log(log(n))
+  }
+  if(modelo=='kum'){
+    menosloglike=loglike_kume(parameters,y,x,tau)
+    p=length(parameters)
+    n=length(y)
+    Neg2LogLike=2*menosloglike
+    AIC=2*menosloglike+2*p
+    BIC=2*menosloglike+p*log(n)
+    HQIC=2*menosloglike+2*p*log(log(n))
+  }
+  return(result=list(Neg2LogLike=Neg2LogLike,AIC=AIC,BIC=BIC,HQIC=HQIC))
+}
